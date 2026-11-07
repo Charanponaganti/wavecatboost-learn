@@ -1,0 +1,200 @@
+[
+{
+"sensor": "CPCB",
+"pollutant": "NO2",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "haar",
+"elapsed": 2.6400000000000006,
+"MASE": 0.5179714151650245,
+"MAE": 0.05661628393539686,
+"RMSE": 0.07193578209593803
+},
+{
+"sensor": "CPCB",
+"pollutant": "NO2",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "d4",
+"elapsed": 2.710000000000001,
+"MASE": 0.5190063796973303,
+"MAE": 0.05672940957150058,
+"RMSE": 0.07276396245771129
+},
+{
+"sensor": "CPCB",
+"pollutant": "NO2",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "la8",
+"elapsed": 2.6400000000000006,
+"MASE": 0.5338276176824708,
+"MAE": 0.058349428347582,
+"RMSE": 0.07413440591891206
+},
+{
+"sensor": "CPCB",
+"pollutant": "PM2.5",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "haar",
+"elapsed": 6.539999999999999,
+"MASE": 1.0310738001749484,
+"MAE": 4.369529109930937,
+"RMSE": 5.551276930195675
+},
+{
+"sensor": "CPCB",
+"pollutant": "PM2.5",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "d4",
+"elapsed": 7.32,
+"MASE": 1.2503674668689264,
+"MAE": 5.2988612877830406,
+"RMSE": 6.625603484915535
+},
+{
+"sensor": "CPCB",
+"pollutant": "PM2.5",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "la8",
+"elapsed": 7.460000000000001,
+"MASE": 1.1118441120344027,
+"MAE": 4.7118210281507595,
+"RMSE": 6.116304954281251
+},
+{
+"sensor": "ID1",
+"pollutant": "NO2",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "haar",
+"elapsed": 9.86,
+"MASE": 1.2593338878842886,
+"MAE": 6.253851744391345,
+"RMSE": 7.559471667301396
+},
+{
+"sensor": "ID1",
+"pollutant": "NO2",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "d4",
+"elapsed": 13.659999999999997,
+"MASE": 1.3090236654749074,
+"MAE": 6.500611166378775,
+"RMSE": 7.553039633058713
+},
+{
+"sensor": "ID1",
+"pollutant": "NO2",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "la8",
+"elapsed": 11.700000000000003,
+"MASE": 1.3240355688996381,
+"MAE": 6.575160274699135,
+"RMSE": 7.604724912295316
+},
+{
+"sensor": "ID1",
+"pollutant": "PM2.5",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "haar",
+"elapsed": 6.509999999999991,
+"MASE": 0.3597737645544178,
+"MAE": 4.1574347680257615,
+"RMSE": 4.94641350276861
+},
+{
+"sensor": "ID1",
+"pollutant": "PM2.5",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "d4",
+"elapsed": 6.180000000000007,
+"MASE": 0.4139719890938569,
+"MAE": 4.783732750994583,
+"RMSE": 5.86149511313763
+},
+{
+"sensor": "ID1",
+"pollutant": "PM2.5",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "la8",
+"elapsed": 6.429999999999993,
+"MASE": 0.4759705959350449,
+"MAE": 5.500169548352351,
+"RMSE": 6.509509715287753
+},
+{
+"sensor": "CPCB",
+"pollutant": "NO2",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "fourier",
+"elapsed": 9.059999999999999,
+"MASE": 0.6921304500141874,
+"MAE": 0.07565254168678924,
+"RMSE": 0.09257747161445369
+},
+{
+"sensor": "CPCB",
+"pollutant": "PM2.5",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "fourier",
+"elapsed": 18.1,
+"MASE": 1.2722407312070876,
+"MAE": 5.391556752684382,
+"RMSE": 6.435267624330901
+},
+{
+"sensor": "ID1",
+"pollutant": "NO2",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "fourier",
+"elapsed": 19.03,
+"MASE": 1.4384270917552593,
+"MAE": 7.143228546058113,
+"RMSE": 7.993451936110959
+},
+{
+"sensor": "ID1",
+"pollutant": "PM2.5",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "fourier",
+"elapsed": 13.750000000000007,
+"MASE": 0.473151456435233,
+"MAE": 5.467592440938894,
+"RMSE": 6.73825262389681
+},
+{
+"sensor": "CPCB",
+"pollutant": "PM2.5",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "emd",
+"elapsed": 102.81,
+"MASE": 7.45984522798356,
+"MAE": 31.61365449662555,
+"RMSE": 33.65786692263357
+},
+{
+"sensor": "ID1",
+"pollutant": "PM2.5",
+"horizon": "1d",
+"method": "wavelgb",
+"filter": "emd",
+"elapsed": 179.69,
+"MASE": 0.6158522923148366,
+"MAE": 7.11659933071856,
+"RMSE": 8.47579383840827
+}
+]

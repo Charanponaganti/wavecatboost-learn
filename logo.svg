@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="WaveCatBoost">
+  <defs>
+    <linearGradient id="g" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2F7A7A"/>
+      <stop offset="1" stop-color="#1A3358"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#g)"/>
+  <!-- wavelet -->
+  <path d="M10 38 C18 22, 22 22, 28 38 S38 54, 44 38 S54 22, 58 30"
+        fill="none" stroke="#F4F7F8" stroke-width="3.2" stroke-linecap="round"/>
+  <!-- boost tree -->
+  <path d="M32 46 V22 M32 28 L24 20 M32 28 L40 20 M24 20 L20 14 M24 20 L28 14 M40 20 L36 14 M40 20 L44 14"
+        fill="none" stroke="#E8C9A8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

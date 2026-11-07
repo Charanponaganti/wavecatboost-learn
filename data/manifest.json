@@ -1,0 +1,67 @@
+{
+  "app": "WaveCatBoost Lab",
+  "paper": "https://ieeexplore.ieee.org/document/10806566",
+  "paper_code": "https://github.com/jborah2/WaveCatBoost-Time-Series-Model",
+  "links": {
+    "cpcb": "https://cpcb.nic.in/",
+    "caaqms": "https://airquality.cpcb.gov.in/ccr/#/caaqm-dashboard-all/caaqm-landing"
+  },
+  "datasets": {
+    "CPCB": {
+      "sensor": "CPCB",
+      "pollutant": "PM2.5",
+      "n_full": 8881,
+      "t0": "2023-06-15 01:00:00",
+      "t1": "2023-07-06",
+      "freq": "hourly",
+      "units": "µg/m³ (as recorded; verify station docs)",
+      "stats": {
+        "mean": 13.076,
+        "sd": 6.002,
+        "min": 1.555,
+        "max": 50.377
+      },
+      "file": "series_CPCB.json"
+    },
+    "ID1": {
+      "sensor": "ID1",
+      "pollutant": "PM2.5",
+      "n_full": 9505,
+      "t0": "2023-07-11 01:00:00",
+      "t1": "2023-08-01",
+      "freq": "hourly",
+      "units": "µg/m³ (as recorded; verify station docs)",
+      "stats": {
+        "mean": 11.28,
+        "sd": 9.36,
+        "min": 0.61,
+        "max": 57.802
+      },
+      "file": "series_ID1.json"
+    },
+    "SHILLONG": {
+      "sensor": "SHILLONG",
+      "pollutant": "PM2.5",
+      "n_full": 8760,
+      "t0": "11-12-2023 00:00",
+      "t1": "31-12-2023 23:00",
+      "freq": "hourly",
+      "units": "µg/m³ (as recorded; verify station docs)",
+      "stats": {
+        "mean": 20.993,
+        "sd": 17.319,
+        "min": 0.22,
+        "max": 96.805
+      },
+      "file": "series_SHILLONG.json"
+    }
+  },
+  "scores_file": "scores.json",
+  "conformal_file": "conformal.json",
+  "eda_decisions_file": "eda_decisions.json",
+  "modwt_fixture_file": "modwt_haar_fixture.json",
+  "notes": {
+    "id1": "ID1 is a station series from the paper release — not a separate pollution board.",
+    "scores": "results/paper/scores.csv are our recursive bake-off scores, not paper Table 1 rolling 1-step."
+  }
+}

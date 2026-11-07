@@ -1,22 +1,22 @@
 [
   {
-    "EDA_finding": "Hour-of-day amplitude (6.20) >= day-of-week (1.44)",
-    "Pipeline_choice": "Seasonality S = 24 for snaive / SARIMA / MASE (not S = 168)"
+    "EDA_finding": "Hour-of-day amplitude dominates day-of-week amplitude on CPCB PM2.5",
+    "Pipeline_choice": "Set seasonal period S = 24 for seasonal-naive, SARIMA, and MASE scaling (not S = 168)"
   },
   {
-    "EDA_finding": "ACF at lag 1 = 0.95; at lag 24 = 0.68",
-    "Pipeline_choice": "Include lag-1 persistence and lag-24 daily cycle in features"
+    "EDA_finding": "ACF remains high at lag 1 and elevated at lag 24",
+    "Pipeline_choice": "Include lag-1 persistence and the daily lag-24 cycle in the feature window"
   },
   {
-    "EDA_finding": "PACF cutoff = 70 h (95% band)",
-    "Pipeline_choice": "Bake-off lag window p = 24; PACF suggests trying p = 48"
+    "EDA_finding": "PACF stays outside the noise band out to several dozen hours",
+    "Pipeline_choice": "Compare lag windows p = 24 and p = 48 under validation MASE"
   },
   {
-    "EDA_finding": "Seasonal-naive residual sd / series sd = 0.80; resid ACF(1) = 0.86",
-    "Pipeline_choice": "Need more than seasonal naive → trees / Wave* on leftover dynamics"
+    "EDA_finding": "Seasonal-naive residuals keep large ACF(1) and substantial residual sd",
+    "Pipeline_choice": "Go beyond seasonal-naive: gradient trees, optionally one model per MODWT band"
   },
   {
-    "EDA_finding": "Haar MRA energy: details = 5%, S5 = 95%",
-    "Pipeline_choice": "Smooth + detail bands both present → MODWT, one model per D_k / S_K, sum"
+    "EDA_finding": "Haar MRA energy is concentrated in the smooth S_K, with smaller but nonzero detail shares",
+    "Pipeline_choice": "Use MODWT; forecast each D_j and S_K, then sum to reconstruct Y"
   }
 ]

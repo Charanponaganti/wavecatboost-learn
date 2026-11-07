@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WaveCatBoost Learn · ATSA Group 8</title>
+  <meta name="description" content="Interactive static guide to Borah et al. WaveCatBoost — MODWT, CatBoost, metrics, conformal prediction." />
+  <link rel="stylesheet" href="css/app.css" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
+  <script src="js/data/learn_data.js" defer></script>
+  <script src="js/data/scores.js" defer></script>
+  <script src="js/modwt.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="mark">
+        <div class="code">ATSA · Group 8</div>
+        <strong>WaveCatBoost</strong>
+        <div class="sub">learn · static</div>
+      </div>
+      <nav class="nav-list" id="nav">
+        <button type="button" data-page="home" class="on">Start</button>
+        <button type="button" data-page="data">Datasets</button>
+        <button type="button" data-page="eda">Preprocess · EDA</button>
+        <button type="button" data-page="modwt-math">MODWT math</button>
+        <button type="button" data-page="modwt-live">MODWT live</button>
+        <button type="button" data-page="catboost">CatBoost</button>
+        <button type="button" data-page="metrics">Metrics</button>
+        <button type="button" data-page="conformal">Conformal</button>
+        <button type="button" data-page="extensions">Extensions · team</button>
+      </nav>
+      <div class="side-foot">
+        Borah et al. 2025<br />IEEE Sensors Letters
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- START -->
+      <section class="page on" data-page="home">
+        <div class="page-head">
+          <div class="kicker">Start</div>
+          <h1>WaveCatBoost</h1>
+          <p class="lead">Pick a board series → follow MODWT bands → CatBoost → scores → conformal bands.</p>
+        </div>
+        <div class="stack">
+          <div class="block">
+            <h2>Active dataset</h2>
+            <div class="chip-row" id="homeChips"></div>
+            <div id="homeSeries" class="plot" style="margin-top:12px"></div>
+          </div>
+          <div class="row two">
+            <div class="block">
+              <h2>Paper</h2>
+              <p class="muted" style="margin:0 0 10px">Borah et al., IEEE Sensors Letters</p>
+              <a id="paperLink" href="https://ieeexplore.ieee.org/document/10806566" target="_blank" rel="noopener">ieeexplore.ieee.org/document/10806566</a>
+            </div>
+            <div class="block">
+              <h2>Path</h2>
+              <p class="muted" style="margin:0">Datasets → EDA → MODWT → CatBoost → Metrics → Conformal → Extensions</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DATA -->
+      <section class="page" data-page="data">
+        <div class="page-head">
+          <div class="kicker">Data</div>
+          <h1>Boards &amp; series</h1>
+          <p class="lead">Selection drives every plot below.</p>
+        </div>
+        <div class="stack">
+          <div class="row three" id="dsCards"></div>
+          <div class="block">
+            <h2>Board sources</h2>
+            <div class="chip-row" style="margin-top:8px">
+              <span class="chip"><a id="linkCpcb" href="#" target="_blank" rel="noopener">CPCB</a></span>
+              <span class="chip"><a id="linkCaaqms" href="#" target="_blank" rel="noopener">CAAQMS dashboard</a></span>
+              <span class="chip"><a id="linkWho" href="#" target="_blank" rel="noopener">WHO AQ</a></span>
+              <span class="chip"><a id="linkCode" href="#" target="_blank" rel="noopener">Paper code</a></span>
+            </div>
+          </div>
+          <div class="block">
+            <div id="dsPlot" class="plot"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDA -->
+      <section class="page" data-page="eda">
+        <div class="page-head">
+          <div class="kicker">Preprocess · EDA</div>
+          <h1>Findings → choices</h1>
+          <p class="lead">CPCB PM2.5 board that set S, lags, and K.</p>
+        </div>
+        <div class="stack">
+          <div class="block">
+            <h2>EDA → pipeline</h2>
+            <div id="edaDecisions"></div>
+          </div>
+          <div class="block">
+            <h2>Figures</h2>
+            <div class="eda-grid" id="edaGrid"></div>
+          </div>
+          <div class="block">
+            <h2>Selected series (live)</h2>
+            <div id="edaSeries" class="plot short"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODWT MATH -->
+      <section class="page" data-page="modwt-math">
+        <div class="page-head">
+          <div class="kicker">MODWT</div>
+          <h1>Haar recursion</h1>
+          <p class="lead">Same pyramid as <span class="mono">R/core/04_modwt.R</span>.</p>
+        </div>
+        <div class="stack">
+          <div class="row two">
+            <div class="block">
+              <h2>Filter conditions</h2>
+              <div class="eq">Σ gₗ = 1,  Σ hₗ = 0
+Haar:  g = (½, ½),  h = (½, −½)
+D4 / LA8: longer orthogonal taps (waveslim)</div>
+            </div>
+            <div class="block">
+              <h2>Level-j step</h2>
+              <div class="eq">s = 2^{j−1}
+Wⱼ(t) = ( V_{j−1}(t) − V_{j−1}(t−s) ) / 2
+Vⱼ(t) = ( V_{j−1}(t) + V_{j−1}(t−s) ) / 2</div>
+            </div>
+          </div>
+          <div class="block">
+            <h2>MRA</h2>
+            <div class="eq">Y = D₁ + D₂ + … + D_K + S_K
+Dⱼ ← IMODWT(only Wⱼ) ·  S_K ← IMODWT(V_K)</div>
+          </div>
+          <div class="block">
+            <h2>Step animation</h2>
+            <div class="toolbar">
+              <div class="field">Level j
+                <select id="animJ"><option>1</option><option>2</option><option>3</option><option selected>4</option></select>
+              </div>
+              <div class="sim-controls">
+                <button class="btn" type="button" id="animPlay">Play</button>
+                <button class="btn secondary" type="button" id="animReset">Reset</button>
+              </div>
+            </div>
+            <div id="animPlot" class="plot"></div>
+            <p class="muted mono" id="animCaption" style="margin:8px 0 0"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODWT LIVE -->
+      <section class="page" data-page="modwt-live">
+        <div class="page-head">
+          <div class="kicker">MODWT · live</div>
+          <h1>K &amp; filter on selected series</h1>
+          <p class="lead">Zoom / pan every trace. No server — runs in-browser.</p>
+        </div>
+        <div class="stack">
+          <div class="block">
+            <div class="toolbar">
+              <div class="field">Dataset
+                <select id="mraSensor"></select>
+              </div>
+              <div class="field">Filter
+                <select id="mraFilter">
+                  <option value="haar">Haar</option>
+                  <option value="d4">D4</option>
+                  <option value="la8">LA8</option>
+                </select>
+              </div>
+              <div class="field">K = <span id="mraKLabel">5</span>
+                <input type="range" id="mraK" min="2" max="8" value="5" />
+              </div>
+            </div>
+            <div id="mraStack" class="plot tall"></div>
+          </div>
+          <div class="row two">
+            <div class="block">
+              <h2>Energy share</h2>
+              <div id="mraEnergy" class="plot short"></div>
+            </div>
+            <div class="block">
+              <h2>What each band holds</h2>
+              <div class="eq" id="mraHint">D1 ≈ odd-hour noise · higher Dⱼ ≈ slower cycles · S_K ≈ trend</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATBOOST -->
+      <section class="page" data-page="catboost">
+        <div class="page-head">
+          <div class="kicker">CatBoost</div>
+          <h1>Per-band boosting</h1>
+          <p class="lead">One model per Dⱼ / S_K; sum for the forecast.</p>
+        </div>
+        <div class="stack">
+          <div class="row two">
+            <div class="block">
+              <h2>Update</h2>
+              <div class="eq">F₀(x) = 0
+Fₘ(x) = Fₘ₋₁(x) + η · Tₘ(x)
+ℓ = ½ (y − F(x))²
+Tₘ ≈ argmin residual fit (oblivious tree)</div>
+            </div>
+            <div class="block">
+              <h2>WaveCatBoost</h2>
+              <div class="eq">Ŷ = Σⱼ Ŷ_{Dⱼ} + Ŷ_{S_K}
+lags on each component; recursive multi-step</div>
+            </div>
+          </div>
+          <div class="block">
+            <h2>Toy residual chase</h2>
+            <div class="toolbar">
+              <div class="field">η
+                <input type="range" id="cbEta" min="5" max="40" value="15" />
+              </div>
+              <div class="field">trees
+                <input type="range" id="cbM" min="1" max="40" value="12" />
+              </div>
+              <button class="btn secondary" type="button" id="cbReplay">Replay</button>
+            </div>
+            <div id="cbPlot" class="plot"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- METRICS -->
+      <section class="page" data-page="metrics">
+        <div class="page-head">
+          <div class="kicker">Metrics</div>
+          <h1>MASE · bake-off</h1>
+          <p class="lead">Paper metric + our recursive scores.</p>
+        </div>
+        <div class="stack">
+          <div class="block">
+            <h2>MASE</h2>
+            <div class="eq">MASE = mean(|Ŷ − Y|) / mean(|Y_t − Y_{t−S}|)
+S = 24 (hour-of-day from EDA) · scale from training only</div>
+          </div>
+          <div class="block">
+            <div class="toolbar">
+              <div class="field">Sensor
+                <select id="metSensor"></select>
+              </div>
+              <div class="field">Pollutant
+                <select id="metPol"></select>
+              </div>
+              <div class="field">Horizon
+                <select id="metH"></select>
+              </div>
+              <div class="field">Score
+                <select id="metScore">
+                  <option value="MASE">MASE</option>
+                  <option value="MAE">MAE</option>
+                  <option value="RMSE">RMSE</option>
+                </select>
+              </div>
+            </div>
+            <div id="metBars" class="plot"></div>
+          </div>
+          <div class="row two">
+            <div class="block">
+              <h2>Table</h2>
+              <div class="table-wrap"><table class="data" id="metTable"><thead></thead><tbody></tbody></table></div>
+            </div>
+            <div class="block">
+              <h2>Hyperparameters</h2>
+              <div class="eq">Grid on val MASE (time split)
+p ∈ {12,24,48} · depth · η · iterations
+J / K from energy elbow (≈5) or ln N
+Wave* = same tree grid on each MRA band</div>
+              <p class="muted" style="margin:10px 0 0">Chosen by lowest validation MASE; test window untouched.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONFORMAL -->
+      <section class="page" data-page="conformal">
+        <div class="page-head">
+          <div class="kicker">Conformal</div>
+          <h1>Prediction intervals</h1>
+          <p class="lead">Weighted split conformal (paper §II-C).</p>
+        </div>
+        <div class="stack">
+          <div class="block">
+            <h2>Equations</h2>
+            <div class="eq">U_t = rolling MAE of residuals (window u)
+CS_t = |Y_t − Ŷ_t| / U_t
+CQ = Quantile_{1−α}(CS over κ hours)
+PI = Ŷ ± CQ · U</div>
+          </div>
+          <div class="block">
+            <div class="toolbar">
+              <div class="field">Coverage band
+                <select id="confPct">
+                  <option value="0.80">80%</option>
+                  <option value="0.90">90%</option>
+                  <option value="0.95" selected>95%</option>
+                  <option value="0.99">99%</option>
+                </select>
+              </div>
+              <div class="field muted" id="confMeta"></div>
+            </div>
+            <div id="confPlot" class="plot tall"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXTENSIONS -->
+      <section class="page" data-page="extensions">
+        <div class="page-head">
+          <div class="kicker">Beyond the paper</div>
+          <h1>Extensions · credits</h1>
+        </div>
+        <div class="stack">
+          <div class="block">
+            <h2>Our extensions</h2>
+            <div class="eq">• Shillong CAAQMS station (new board)
+• Filter bake-off: Haar vs D4 vs LA8
+• Fourier-band &amp; EMD substitutes for MODWT
+• Direct multi-horizon heads (1h / 6h / 24h)
+• ERA5 covariates on Shillong
+• Weighted conformal alerts on WaveCatBoost</div>
+          </div>
+          <div class="block">
+            <h2>Built by</h2>
+            <div class="team">
+              <a href="https://github.com/Kumarutkarsh9470" target="_blank" rel="noopener">Kumar Utkarsh<div class="gh">github.com/Kumarutkarsh9470</div></a>
+              <a href="https://github.com/charan-435" target="_blank" rel="noopener">M Charan Sree Teja<div class="gh">github.com/charan-435</div></a>
+              <a href="https://github.com/Charanponaganti" target="_blank" rel="noopener">P Sai Deva Charan<div class="gh">github.com/Charanponaganti</div></a>
+              <a href="https://github.com/lalitdeshmane10-cloud" target="_blank" rel="noopener">D Lalit Santosh<div class="gh">github.com/lalitdeshmane10-cloud</div></a>
+            </div>
+          </div>
+          <div class="block">
+            <h2>Paper credit</h2>
+            <p style="margin:0 0 8px">J. Borah et al., “WaveCatBoost for Probabilistic Forecasting of Multidimensional Feature-Temporal Data,” <em>IEEE Sensors Letters</em>, 2025.</p>
+            <a href="https://ieeexplore.ieee.org/document/10806566" target="_blank" rel="noopener">https://ieeexplore.ieee.org/document/10806566</a>
+            <p class="muted" style="margin:10px 0 0">Code reference: <a href="https://github.com/jborah2/WaveCatBoost-Time-Series-Model" target="_blank" rel="noopener">jborah2/WaveCatBoost-Time-Series-Model</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="lightbox" id="lightbox" title="Click to close"><img alt="" id="lightboxImg" /></div>
+</body>
+</html>

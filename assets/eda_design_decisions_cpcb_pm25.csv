@@ -1,0 +1,6 @@
+"EDA_finding","Pipeline_choice"
+"Hour-of-day amplitude (6.20) >= day-of-week (1.44)","Seasonality S = 24 for snaive / SARIMA / MASE (not S = 168)"
+"ACF at lag 1 = 0.95; at lag 24 = 0.68","Include lag-1 persistence and lag-24 daily cycle in features"
+"PACF cutoff = 70 h (95% band)","Bake-off lag window p = 24; PACF suggests trying p = 48"
+"Seasonal-naive residual sd / series sd = 0.80; resid ACF(1) = 0.86","Need more than seasonal naive → trees / Wave* on leftover dynamics"
+"Haar MRA energy: details = 5%, S5 = 95%","Smooth + detail bands both present → MODWT, one model per D_k / S_K, sum"

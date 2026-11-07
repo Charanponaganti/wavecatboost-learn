@@ -1,0 +1,2 @@
+"n_train","hod_amp","dow_amp","S","acf_lag1","acf_lagS","pacf_cutoff","p_lags","p_suggested","snaive_resid_sd_ratio","snaive_resid_acf1","energy_D1","energy_details","energy_S","multi_scale","J","filter"
+8521,6.2027581773662,1.4358863582598,24,0.947916255437347,0.683352413457601,70,24,48,0.796920705338772,0.86077236816843,0.00409098296507683,0.0457810487684706,0.954218951231529,TRUE,5,"haar"
